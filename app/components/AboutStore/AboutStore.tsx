@@ -30,7 +30,7 @@ const AboutStore = () => {
     src: '/AboutStore/listeningSM.jpg',
   });
   return (
-    <section className="container py-2 flex flex-col gap-10 lg:flex-row-reverse">
+    <section className="container pt-2 pb-28 flex flex-col gap-10 lg:flex-row-reverse">
       <picture className="flex-grow">
         <source media="(min-width: 1024px)" srcSet={desktop} />
         <source media="(min-width: 480px)" srcSet={tablet} />

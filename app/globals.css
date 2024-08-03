@@ -62,4 +62,18 @@
     background-size: cover;
     background-position: 50% -120px;
   }
+
+  footer {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 6.25rem;
+      height: 4px;
+      background-color: var(--accent-clr);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
 }
