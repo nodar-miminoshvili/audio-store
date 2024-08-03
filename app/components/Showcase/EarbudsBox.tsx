@@ -2,7 +2,7 @@ import { getImageProps } from 'next/image';
 import Link from 'next/link';
 
 const EarbudsBox = () => {
-  const common = { alt: 'speaker', sizes: '50vw' };
+  const common = { alt: 'earphone', sizes: '50vw' };
   const {
     props: { srcSet: desktop },
   } = getImageProps({
@@ -31,7 +31,7 @@ const EarbudsBox = () => {
     src: '/Showcase/budsSM.jpg',
   });
   return (
-    <div className="grid grid-rows-2 gap-5 sm:grid-cols-2">
+    <div className="grid grid-rows-2 gap-5 sm:grid-cols-2 sm:grid-rows-1">
       <picture>
         <source media="(min-width: 1024px)" srcSet={desktop} />
         <source media="(min-width: 640px)" srcSet={desktop} />
