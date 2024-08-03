@@ -34,6 +34,7 @@
     --accent-clr-highlight: #ec9d6e;
     --text-primary-clr: #191919;
     --text-secondary-clr: rgba(0, 0, 0, 0.5);
+    --category-faded-text-clr: #00000080;
   }
 }
 
