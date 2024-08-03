@@ -10,7 +10,7 @@ const CategoriesSection = () => {
     { title: 'earphones', image: buds },
   ];
   return (
-    <section className="container py-28 sm:py-32 ">
+    <section className="container py-28 sm:py-32 lg:pt-44 ">
       <ul className="flex flex-col items-center gap-20 sm:flex-row sm:gap-5">
         {categories.map((category, idx) => {
           return <Category key={idx} title={category.title.toUpperCase()} image={category.image} />;

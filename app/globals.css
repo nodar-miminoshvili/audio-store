@@ -19,7 +19,8 @@
   .btn-transparent {
     color: var(--text-primary-clr);
     border: 1px solid var(--text-primary-clr);
-    @apply bg-transparent;
+    @apply bg-transparent transition-colors hover:bg-[var(--text-primary-clr)]
+     hover:text-white block text-sm w-fit tracking-wide;
   }
   .btn-black {
     background-color: var(--text-primary-clr);
@@ -55,5 +56,10 @@
       bg-[length:min(100%,380px)] sm:bg-hero-tablet 
       sm:bg-contain sm:scale-[115%] lg:bg-hero-desktop;
     }
+  }
+  .orange-box {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% -120px;
   }
 }

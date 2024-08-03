@@ -1,13 +1,13 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { IoIosArrowForward as Arrow } from 'react-icons/io';
 
-const Category = ({ title, image }: { title: string; image: any }) => {
+const Category = ({ title, image }: { title: string; image: StaticImageData }) => {
   return (
     <li className="bg-[rgb(241,241,241)] w-full h-full rounded-md pb-5 pt-16 relative max-w-[23rem] sm:max-w-none">
       <Image
         src={image}
-        alt="speakers"
+        alt={title}
         width={150}
         height={150}
         className="w-36 h-auto absolute -top-1/2 left-1/2 -translate-x-1/2 translate-y-[15%] "
