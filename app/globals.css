@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .container {
+    @apply max-w-screen-xl px-6 mx-auto;
+  }
+  .hero-text-faded {
+    color: #ffffff80;
+  }
+  .btn {
+    @apply px-8 py-3.5 font-bold;
+  }
+  .btn-primary {
+    background-color: var(--accent-clr);
+    @apply text-white;
+  }
+  .btn-transparent {
+    color: var(--text-primary-clr);
+    border: 1px solid var(--text-primary-clr);
+    @apply bg-transparent;
+  }
+  .btn-black {
+    background-color: var(--text-primary-clr);
+    color: white;
+  }
+}
+
+@layer base {
+  :root {
+    --base-background: white;
+    --accent-clr: #d87d4a;
+    --text-primary-clr: #191919;
+    --text-secondary-clr: rgba(0, 0, 0, 0.5);
+  }
+}
