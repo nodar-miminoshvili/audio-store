@@ -5,7 +5,7 @@ import Showcase from './components/Showcase/Showcase';
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="bg-[var(--base-background)] transition-colors">
       <Hero />
       <CategoriesSection />
       <Showcase />

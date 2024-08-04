@@ -38,7 +38,7 @@ const EarbudsBox = () => {
         <source media="(min-width: 500px)" srcSet={mobile} />
         <img {...rest} className="w-full h-auto rounded-lg" />
       </picture>
-      <div className="w-full bg-[#f1f1f1] rounded-lg flex flex-col justify-center gap-8 pl-[10%] max-h-[18rem] sm:max-h-none md:pl-[15%] lg:pl-[20%]">
+      <div className="w-full bg-[--grey-box] rounded-lg flex flex-col justify-center gap-8 pl-[10%] max-h-[18rem] sm:max-h-none md:pl-[15%] lg:pl-[20%]">
         <h2 className="text-[1.75rem] font-bold text-[var(--text-primary-clr)]">YX1 EARPHONES</h2>
         <Link href="#" className="btn btn-transparent">
           SEE PRODUCT

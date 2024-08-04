@@ -34,12 +34,12 @@ const OrangeBox = () => {
         />
       </picture>
       <div className="max-w-[25rem] mx-auto lg:text-left lg:max-w-[20rem] lg:mx-0 lg:mt-20">
-        <h2 className="text-4xl text-white tracking-wide font-bold mb-6 sm:text-5xl lg:text-[3.5rem]">
+        <h2 className="text-4xl text-[var(--orange-box-text)] tracking-wide font-bold mb-6 sm:text-5xl lg:text-[3.5rem]">
           ZX9
           <br />
           SPEAKER
         </h2>
-        <p className="mb-16 text-[#ffffffbf]">
+        <p className="mb-16 text-[var(--orange-box-text-faded)]">
           Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
         </p>
         <Link

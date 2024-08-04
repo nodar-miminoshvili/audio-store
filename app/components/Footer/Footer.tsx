@@ -7,7 +7,7 @@ import { PiInstagramLogoBold as InstaIcon } from 'react-icons/pi';
 const Footer = () => {
   return (
     <div className="bg-[var(--text-primary-clr)]">
-      <footer className="container pt-14 pb-2 sm:before:left-[5.6rem] ">
+      <footer className="container pt-14 pb-2 sm:after:left-[5.6rem] before:hidden sm:before:block ">
         <FooterLinks />
         <p className="text-[#ffffff80] mt-12 text-center text-sm leading-relaxed max-w-[27rem] mx-auto md:mx-0 md:mr-auto md:text-left">
           Audiophile is an all in one stop to fulfill your audio needs. We&apos;re a small team of

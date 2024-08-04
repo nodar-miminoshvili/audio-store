@@ -36,6 +36,60 @@
     --text-primary-clr: #191919;
     --text-secondary-clr: rgba(0, 0, 0, 0.5);
     --category-faded-text-clr: #00000080;
+    --grey-box: #f1f1f1;
+    --category-text: #00000080;
+    --orange-box-text: white;
+    --orange-box-text-faded: #ffffffbf;
+    --text-temporary: #191919;
+    --text-temporary-faded: #00000080;
+    --footer-divider: transparent;
+
+    --theme-switcher-button-active-bg: #e6e6e6;
+    --theme-switcher-button: #666666;
+    --theme-switcher-button-active: #171717;
+    --theme-switcher-border: #3e3d3d;
+  }
+}
+
+html.dark {
+  --base-background: #191919;
+  --accent-clr: #d87d4a;
+  --accent-clr-highlight: #ec9d6e;
+  --text-primary-clr: #191919;
+  --text-secondary-clr: rgba(0, 0, 0, 0.5);
+  --category-faded-text-clr: #00000080;
+  --grey-box: #aaa;
+  --category-text: #000000a8;
+  --orange-box-text: #191919;
+  --orange-box-text-faded: #191919bf;
+  --text-temporary: #fff;
+  --text-temporary-faded: #ffffff80;
+  --footer-divider: #ffffff15;
+
+  --theme-switcher-button-active-bg: #292929;
+  --theme-switcher-button: #a1a1a1;
+  --theme-switcher-button-active: #ededed;
+}
+
+html.system {
+  @media (prefers-color-scheme: dark) {
+    --base-background: #191919;
+    --accent-clr: #d87d4a;
+    --accent-clr-highlight: #ec9d6e;
+    --text-primary-clr: #191919;
+    --text-secondary-clr: rgba(0, 0, 0, 0.5);
+    --category-faded-text-clr: #00000080;
+    --grey-box: #aaa;
+    --category-text: #000000a8;
+    --orange-box-text: #191919;
+    --orange-box-text-faded: #191919bf;
+    --text-temporary: #fff;
+    --text-temporary-faded: #ffffff80;
+    --footer-divider: #ffffff15;
+
+    --theme-switcher-button-active-bg: #292929;
+    --theme-switcher-button: #a1a1a1;
+    --theme-switcher-button-active: #ededed;
   }
 }
 
@@ -68,6 +122,15 @@
     &::before {
       content: '';
       position: absolute;
+      width: 100%;
+      height: 4px;
+      left: 0;
+      top: 0;
+      background-color: var(--footer-divider);
+    }
+    &::after {
+      content: '';
+      position: absolute;
       width: 6.25rem;
       height: 4px;
       background-color: var(--accent-clr);
@@ -75,5 +138,16 @@
       left: 50%;
       transform: translateX(-50%);
     }
+  }
+
+  .themeSwitcher {
+    border-color: var(--theme-switcher-border);
+  }
+  .themeSwitcher > li {
+    color: var(--theme-switcher-button);
+  }
+  .themeSwitcher > li.active {
+    background-color: var(--theme-switcher-button-active-bg);
+    color: var(--theme-switcher-button-active);
   }
 }

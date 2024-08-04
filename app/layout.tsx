@@ -3,6 +3,7 @@ import { Manrope } from 'next/font/google';
 import './globals.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import { cookies } from 'next/headers';
 
 const manrope = Manrope({
   weight: ['400', '500', '600', '700'],
@@ -21,10 +22,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const theme = cookies().get('theme')?.value
+    ? (cookies().get('theme')!.value as 'dark' | 'light')
+    : 'system';
+
   return (
-    <html lang="en">
+    <html lang="en" className={`${theme}`}>
       <body className={manrope.className}>
-        <Header />
+        <Header selectedTheme={theme} />
         {children}
         <Footer />
       </body>
