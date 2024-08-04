@@ -3,7 +3,7 @@ import Link from 'next/link';
 const Hero = () => {
   return (
     <div className="bg-[var(--text-primary-clr)]">
-      <div className="container pt-28 pb-28  text-center overflow-hidden hero lg:text-left lg:pt-36 lg:pb-32">
+      <section className="container pt-28 pb-28  text-center overflow-hidden hero lg:text-left lg:pt-36 lg:pb-32">
         <span className="hero-text-faded text-sm font-bold tracking-[0.45rem] mb-4 block">
           NEW PRODUCT
         </span>
@@ -21,7 +21,7 @@ const Hero = () => {
         >
           SEE PRODUCT
         </Link>
-      </div>
+      </section>
     </div>
   );
 };

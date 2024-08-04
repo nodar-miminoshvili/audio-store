@@ -43,6 +43,7 @@
     --text-temporary: #191919;
     --text-temporary-faded: #00000080;
     --footer-divider: transparent;
+    --category-page-hero-divider: transparent;
 
     --theme-switcher-button-active-bg: #e6e6e6;
     --theme-switcher-button: #666666;
@@ -65,6 +66,7 @@ html.dark {
   --text-temporary: #fff;
   --text-temporary-faded: #ffffff80;
   --footer-divider: #ffffff15;
+  --category-page-hero-divider: var(--accent-clr);
 
   --theme-switcher-button-active-bg: #292929;
   --theme-switcher-button: #a1a1a1;
@@ -86,6 +88,7 @@ html.system {
     --text-temporary: #fff;
     --text-temporary-faded: #ffffff80;
     --footer-divider: #ffffff15;
+    --category-page-hero-divider: var(--accent-clr);
 
     --theme-switcher-button-active-bg: #292929;
     --theme-switcher-button: #a1a1a1;
@@ -149,5 +152,19 @@ html.system {
   .themeSwitcher > li.active {
     background-color: var(--theme-switcher-button-active-bg);
     color: var(--theme-switcher-button-active);
+  }
+
+  .categories-hero {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      height: 5px;
+      transform: translateX(-50%);
+      background-color: var(--category-page-hero-divider);
+      transition: background-color 1.75s ease-in-out;
+    }
   }
 }
