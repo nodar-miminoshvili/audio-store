@@ -99,7 +99,7 @@ html.system {
 @layer components {
   .hero {
     position: relative;
-    z-index: 100;
+    z-index: 20;
     &::before {
       content: '';
       width: 100%;

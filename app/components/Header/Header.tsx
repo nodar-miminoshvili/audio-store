@@ -8,7 +8,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 
 const Header = ({ selectedTheme }: { selectedTheme: Theme }) => {
   return (
-    <div className="bg-[var(--text-primary-clr)]">
+    <div className="bg-[var(--text-primary-clr)] sticky z-50 top-0">
       <header className="container flex py-8 text-white justify-between items-center border-b border-b-[#ffffff80]">
         <button className="lg:hidden basis-0 grow">
           <HamburgerIcon className="text-2xl sm:text-3xl" />
