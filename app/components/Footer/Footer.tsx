@@ -1,8 +1,4 @@
-import Link from 'next/link';
 import FooterLinks from './FooterLinks';
-import { CgFacebook as FbIcon } from 'react-icons/cg';
-import { FaXTwitter as XIcon } from 'react-icons/fa6';
-import { PiInstagramLogoBold as InstaIcon } from 'react-icons/pi';
 
 const Footer = () => {
   return (

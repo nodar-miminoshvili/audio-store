@@ -1,42 +1,38 @@
-import { getImageProps } from 'next/image';
+import RenderCorrectSizeImage from '../RenderCorrectSizeImage';
 
 const AboutStore = () => {
-  const common = { alt: 'earphone', sizes: '50vw' };
-  const {
-    props: { srcSet: desktop },
-  } = getImageProps({
-    ...common,
-    width: 540,
-    height: 588,
-    quality: 90,
-    src: '/AboutStore/listeningLG.jpg',
-  });
-  const {
-    props: { srcSet: tablet },
-  } = getImageProps({
-    ...common,
-    width: 1378,
-    height: 600,
-    quality: 90,
-    src: '/AboutStore/listeningMD.jpg',
-  });
-  const {
-    props: { srcSet: mobile, ...rest },
-  } = getImageProps({
-    ...common,
-    width: 654,
-    height: 600,
-    quality: 90,
-    src: '/AboutStore/listeningSM.jpg',
-  });
+  const images = [
+    {
+      width: 654,
+      height: 600,
+      quality: 90,
+      src: '/AboutStore/listeningSM.jpg',
+    },
+    {
+      width: 1378,
+      height: 600,
+      quality: 90,
+      src: '/AboutStore/listeningMD.jpg',
+    },
+    {
+      width: 540,
+      height: 588,
+      quality: 90,
+      src: '/AboutStore/listeningLG.jpg',
+    },
+  ];
+
   return (
     <section className="container pb-28 flex flex-col gap-10 lg:flex-row-reverse">
-      <picture className="flex-grow">
-        <source media="(min-width: 1024px)" srcSet={desktop} />
-        <source media="(min-width: 480px)" srcSet={tablet} />
-        <source srcSet={mobile} />
-        <img {...rest} className="w-full h-auto rounded-lg" />
-      </picture>
+      <RenderCorrectSizeImage
+        imageDetailsArr={images}
+        imagesCommonDetails={{
+          alt: 'man listening music with XX99 Mark Headphones',
+          sizes: '50vw',
+        }}
+        imageStyles="rounded-lg"
+        pictureStyles="flex-grow"
+      />
       <div className="text-center lg:text-left lg:basis-1/2 self-center lg:pr-20">
         <h2 className="text-[var(--text-temporary)] text-[1.75rem] mb-8 font-bold tracking-wider sm:text-4xl ">
           BRINGING YOU THE <span className="text-[var(--accent-clr)] ">BEST</span> AUDIO GEAR
