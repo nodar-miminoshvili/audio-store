@@ -30,7 +30,7 @@
 
 @layer base {
   :root {
-    --base-background: white;
+    --base-background: rgb(250, 250, 250);
     --accent-clr: #d87d4a;
     --accent-clr-highlight: #ec9d6e;
     --text-primary-clr: #191919;

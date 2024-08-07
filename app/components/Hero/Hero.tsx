@@ -17,7 +17,8 @@ const Hero = () => {
         </p>
         <Link
           href="#"
-          className="btn btn-primary block w-fit mx-auto tracking-wide lg:mx-0 lg:mr-auto transition-colors hover:bg-[var(--accent-clr-highlight)]"
+          className="btn btn-primary block w-fit mx-auto tracking-wide lg:mx-0 lg:mr-auto transition-colors 
+          border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] hover:bg-transparent"
         >
           SEE PRODUCT
         </Link>
