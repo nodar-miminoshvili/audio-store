@@ -12,12 +12,12 @@ const ProductListing = ({ product }: { product: Product }) => {
     sizes: '50vw',
   };
   return (
-    <li className="flex flex-col gap-8 lg:flex-row lg:gap-32 even:flex-row-reverse ">
+    <li className="flex flex-col gap-8 lg:flex-row lg:gap-32 lg:even:flex-row-reverse ">
       <RenderCorrectSizeImage
         imageDetailsArr={images}
         imagesCommonDetails={commonDetails}
-        imageStyles="rounded-lg"
-        pictureStyles="flex-grow basis-1/2"
+        imageStyles="rounded-lg aspect-[654/704] sm:aspect-[1378/704] lg:aspect-[1080/1120]"
+        pictureStyles="lg:flex-grow lg:basis-1/2"
       />
       <div className="text-center flex flex-col gap-6 lg:basis-1/2 sm:px-12 md:px-16 lg:px-0 lg:self-center lg:text-left">
         {product.details.newRelease && (

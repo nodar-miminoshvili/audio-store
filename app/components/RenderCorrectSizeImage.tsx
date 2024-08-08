@@ -30,9 +30,9 @@ const RenderCorrectSizeImage = ({
       <source media="(min-width: 640px)" srcSet={images[1].source} />
       <source media="(min-width: 100px)" srcSet={images[0].source} />
       <img
-        alt=""
-        className={`w-full h-auto ${imageStyles ? imageStyles : ''}`}
-        {...images[0].rest}
+        alt={imagesCommonDetails.alt}
+        loading="lazy"
+        className={`w-full h-auto  ${imageStyles ? imageStyles : ''} `}
       />
     </picture>
   );
