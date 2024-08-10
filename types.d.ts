@@ -20,9 +20,13 @@ type Product = {
   details: {
     description: string;
     features: string;
-    inTheBox: string;
+    inTheBox: string[];
     newRelease?: boolean;
-    productImages: {};
+    productImages: {
+      mobile: string[];
+      tablet: string[];
+      desktop: string[];
+    };
     categoryImages: string[];
   };
 };

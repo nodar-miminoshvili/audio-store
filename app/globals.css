@@ -51,6 +51,9 @@
     --theme-switcher-border: #3e3d3d;
 
     --placeholder-clr: #efefef;
+
+    --bg-invesre: #191919;
+    --text-inverse: #fff;
   }
 }
 
@@ -75,6 +78,9 @@ html.dark {
   --theme-switcher-button-active: #ededed;
 
   --placeholder-clr: #363636;
+
+  --bg-invesre: #fff;
+  --text-inverse: #191919;
 }
 
 html.system {
@@ -99,6 +105,9 @@ html.system {
     --theme-switcher-button-active: #ededed;
 
     --placeholder-clr: #363636;
+
+    --bg-invesre: #fff;
+    --text-inverse: #191919;
   }
 }
 
