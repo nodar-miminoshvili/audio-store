@@ -21,7 +21,7 @@ const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
           <HamburgerIcon className="text-2xl sm:text-3xl" />
         </button>
 
-        <Image src={logo} alt="audiophile logo" width={144} height={25} className="" />
+        <Image src={logo} alt="audiophile logo" width={144} height={25} className="" priority />
 
         <FullNav />
 
@@ -42,7 +42,7 @@ const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
 
               <Suspense
                 fallback={
-                  <div className="w-[45px] h-[45px] rounded-full animate-pulse bg-[#363636]"></div>
+                  <div className="w-[45px] h-[45px] rounded-full animate-pulse bg-[#363636] hidden sm:block"></div>
                 }
               >
                 <ProfileButtonWrapper />

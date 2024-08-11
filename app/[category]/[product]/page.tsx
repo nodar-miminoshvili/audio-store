@@ -6,7 +6,7 @@ const CategoryPage = async ({ params }: { params: { product: string } }) => {
     await sql`SELECT * FROM audiogear WHERE id=${Number(params.product)}`;
 
   return (
-    <main className="container mt-16 mb-32">
+    <main className="container pt-24 mb-32">
       <div>
         <Product product={products[0]} />
       </div>

@@ -1,11 +1,11 @@
-import { getUserProfileData } from '@/lib/actions';
+import { getUserProfileData } from '@/lib/serverActions';
 import ProfileButton from './ProfileButton';
 
 const ProfileButtonWrapper = async () => {
   const user = await getUserProfileData();
 
   return (
-    <div className="flex items-center">
+    <div className="hidden items-center sm:flex">
       <ProfileButton avatar={user.picture} />
     </div>
   );

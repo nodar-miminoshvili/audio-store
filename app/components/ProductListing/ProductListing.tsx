@@ -33,7 +33,7 @@ const ProductListing = ({ product }: { product: Product }) => {
           {product.details.description}
         </p>
         <Link
-          href="#"
+          href={`/headphones/${product.id}`}
           className="btn btn-primary border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] 
           transition-colors hover:bg-transparent block w-fit text-sm mx-auto tracking-widest lg:mx-0 lg:mr-auto"
         >

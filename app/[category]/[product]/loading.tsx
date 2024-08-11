@@ -28,7 +28,7 @@ const LoadingProductPage = () => {
   const tablet = mobile;
 
   return (
-    <div className="container mt-16 mb-32">
+    <div className="container pt-24 mb-32">
       <div className="flex flex-col gap-8 sm:flex-row lg:gap-32 ">
         <RenderCorrectSizeImage
           imageDetailsArr={mainImages}

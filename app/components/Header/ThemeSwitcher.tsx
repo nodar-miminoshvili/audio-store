@@ -1,6 +1,6 @@
 'use client';
 
-import { switchTheme } from '@/lib/actions';
+import { switchTheme } from '@/lib/serverActions';
 import { GoMoon as MoonIcon } from 'react-icons/go';
 import { HiOutlineSun as SunIcon } from 'react-icons/hi2';
 import { RiComputerLine as SystemIcon } from 'react-icons/ri';
