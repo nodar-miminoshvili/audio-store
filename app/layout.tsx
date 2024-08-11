@@ -4,6 +4,7 @@ import './globals.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { cookies } from 'next/headers';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const manrope = Manrope({
   weight: ['400', '500', '600', '700'],
@@ -29,9 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${theme}`}>
       <body className={manrope.className}>
-        <Header selectedTheme={theme} />
-        {children}
-        <Footer />
+        <UserProvider>
+          <Header selectedTheme={theme} />
+          {children}
+          <Footer />
+        </UserProvider>
       </body>
     </html>
   );
