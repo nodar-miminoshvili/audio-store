@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const FullNav = () => {
+const FullNav = ({ forSmallScreens }: { forSmallScreens?: boolean }) => {
   const pathname = usePathname();
   const navLinks = [
     {
@@ -24,8 +24,12 @@ const FullNav = () => {
     },
   ];
   return (
-    <nav className="hidden lg:block">
-      <ul className="flex gap-10 text-sm">
+    <nav className={`${forSmallScreens ? 'block' : 'hidden lg:block'}`}>
+      <ul
+        className={`flex ${
+          forSmallScreens ? 'flex-col py-7 gap-5 text-base' : 'flex-row gap-10 text-sm'
+        }`}
+      >
         {navLinks.map((link, idx) => {
           return (
             <li key={idx}>

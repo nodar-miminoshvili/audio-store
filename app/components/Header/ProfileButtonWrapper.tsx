@@ -1,4 +1,4 @@
-import { getUserProfileData } from '@/lib/serverActions';
+import { getUserProfileData } from '@/lib/actions';
 import ProfileButton from './ProfileButton';
 
 const ProfileButtonWrapper = async () => {
