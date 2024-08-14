@@ -3,7 +3,7 @@ import ProductListing from '../components/ProductListing/ProductListing';
 
 const CategoryPage = async ({ params }: { params: { category: string } }) => {
   const { rows: products }: { rows: Product[] } =
-    await sql`SELECT * FROM audiogear WHERE category=${params.category}`;
+    await sql`SELECT * FROM products WHERE category=${params.category}`;
   return (
     <>
       <div

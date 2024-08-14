@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import { RiShoppingCartLine as CartIcon } from 'react-icons/ri';
-
 import logo from '@/public/Header/logo.svg';
 import FullNav from './FullNav';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -10,9 +8,11 @@ import SignupButton from './SignupButton';
 import ProfileButtonWrapper from './ProfileButtonWrapper';
 import { Suspense } from 'react';
 import HamburgerMenu from './HamburgerMenu';
+import CartWrapper from './CartWrapper';
 
 const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
   const session = await getSession();
+  const userId = session && session.user.sub;
 
   return (
     <div className="bg-[var(--text-primary-clr)] sticky z-50 top-0">
@@ -34,9 +34,7 @@ const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
             </div>
           ) : (
             <div className="flex gap-5 items-center">
-              <button>
-                <CartIcon className="text-2xl sm:text-3xl text-white" />
-              </button>
+              <CartWrapper userId={userId} />
 
               <Suspense
                 fallback={

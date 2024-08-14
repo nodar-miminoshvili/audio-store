@@ -1,8 +1,10 @@
+import { getSession } from '@auth0/nextjs-auth0';
 import RenderCorrectSizeImage from '../RenderCorrectSizeImage';
+import AddToCartButton from './AddToCartButton';
 import Features from './Features';
 import ProductImages from './ProductImages';
 
-const Product = ({ product }: { product: Product }) => {
+const Product = async ({ product }: { product: Product }) => {
   const images: ImageDetails[] = [
     { width: 654, height: 654, quality: 90, src: product.details.productImages.mobile[0] },
     { width: 562, height: 960, quality: 90, src: product.details.productImages.tablet[0] },
@@ -18,6 +20,8 @@ const Product = ({ product }: { product: Product }) => {
     style: 'currency',
     currency: 'USD',
   });
+
+  const session = await getSession();
 
   return (
     <div>
@@ -46,24 +50,14 @@ const Product = ({ product }: { product: Product }) => {
             $ {formatter.format(Number(product.price)).slice(1)}
           </span>
           <div className="flex gap-3.5 flex-wrap sm:gap-4 items-end md:gap-4 lg:gap-5">
-            {/* <button
-              className="btn btn-transparent border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] 
-            transition-colors hover:bg-transparent block w-fit text-sm tracking-widest mt-4"
-            >
-              BUY NOW
-            </button> */}
             <button
               className="py-3.5 px-5 btn-primary font-bold border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] 
             transition-colors hover:bg-transparent block w-fit text-sm tracking-widest md:px-8"
             >
               BUY NOW
             </button>
-            <button
-              className="btn !px-6 border border-[var(--text-temporary)] text-[var(--text-temporary)] hover:text-[var(--text-inverse)] 
-             transition-colors hover:bg-[var(--bg-invesre)] block w-fit text-sm tracking-widest lg:!md-8"
-            >
-              ADD TO CART
-            </button>
+
+            <AddToCartButton productId={product.id} isLogged={!!session} />
           </div>
         </div>
       </div>

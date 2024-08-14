@@ -3,7 +3,7 @@ import { sql } from '@vercel/postgres';
 
 const CategoryPage = async ({ params }: { params: { product: string } }) => {
   const { rows: products }: { rows: Product[] } =
-    await sql`SELECT * FROM audiogear WHERE id=${Number(params.product)}`;
+    await sql`SELECT * FROM products WHERE id=${Number(params.product)}`;
 
   return (
     <main className="container pt-24 mb-32">
