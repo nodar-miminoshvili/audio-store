@@ -28,5 +28,18 @@ type Product = {
       desktop: string[];
     };
     categoryImages: string[];
+    suggestionImages: string[];
+    cartImage: string;
   };
 };
+
+type CartProductRaw = {
+  id: number;
+  product_id: number;
+  user_id: string;
+  quantity: number;
+};
+
+interface PopulatedProduct extends Product {
+  quantity: number;
+}

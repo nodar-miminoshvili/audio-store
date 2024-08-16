@@ -2,20 +2,22 @@ import { sql } from '@vercel/postgres';
 import Cart from './Cart';
 import { sumUpCart } from '@/lib/helperFunctions';
 import { unstable_cache } from 'next/cache';
+import { getCartProducts } from '@/lib/actions';
 
-const CartWrapper = async ({ userId }: { userId: number }) => {
+const CartWrapper = async ({ userId }: { userId: string }) => {
   const productsInCart = unstable_cache(
-    async id => await sql`SELECT * FROM carts WHERE user_id=${id}`,
+    async (id: string) => await sql`SELECT * FROM carts WHERE user_id=${id}`,
     ['user-cart'],
     { tags: ['cart'] }
   );
 
-  const { rows } = await productsInCart(userId);
-  const sum = sumUpCart(rows as { quantity: number }[]);
+  const { rows }: any = await productsInCart(userId);
+  const sum = sumUpCart(rows);
+  const products: any = await getCartProducts(rows);
 
   return (
     <>
-      <Cart productsQuantityInCart={sum} />
+      <Cart productsQuantityInCart={sum} products={products} />
     </>
   );
 };

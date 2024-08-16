@@ -41,3 +41,17 @@ export const updateCart = async (action: Action, productId?: productId) => {
   }
   revalidateTag('cart');
 };
+
+export const getCartProducts = async (
+  rawProducts: CartProductRaw[]
+): Promise<PopulatedProduct[]> => {
+  const populatedProducts = await Promise.all(
+    rawProducts.map(async product => {
+      const { rows: populatedProduct } =
+        await sql`SELECT * FROM products WHERE id=${product.product_id}`;
+
+      return { ...(populatedProduct[0] as Product), quantity: product.quantity };
+    })
+  );
+  return populatedProducts;
+};
