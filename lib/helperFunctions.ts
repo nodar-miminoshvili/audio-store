@@ -1,3 +1,3 @@
-export const sumUpCart = (products: { quantity: number }[]) => {
+export const sumUpCartProductsQuantities = (products: PopulatedProduct[]) => {
   return products.reduce((prev, curr) => curr.quantity + prev, 0);
 };

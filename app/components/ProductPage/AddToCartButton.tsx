@@ -14,7 +14,7 @@ const AddToCartButton = ({ productId, isLogged }: { productId: number; isLogged:
           text-[var(--text-temporary)] hover:text-[var(--text-inverse)] 
           transition-colors hover:bg-[var(--bg-invesre)] block w-fit text-sm tracking-widest lg:!md-8"
           onClick={async () => {
-            await updateCart('add or increment', productId);
+            await updateCart('ADD OR INCREMENT', productId);
             router.refresh();
           }}
         >

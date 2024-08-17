@@ -43,3 +43,6 @@ type CartProductRaw = {
 interface PopulatedProduct extends Product {
   quantity: number;
 }
+
+type CartAction = 'INCREMENT' | 'DECREMENT' | 'CLEAR';
+type ProductId = number;

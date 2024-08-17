@@ -1,6 +1,5 @@
 import { sql } from '@vercel/postgres';
 import Cart from './Cart';
-import { sumUpCart } from '@/lib/helperFunctions';
 import { unstable_cache } from 'next/cache';
 import { getCartProducts } from '@/lib/actions';
 
@@ -12,12 +11,11 @@ const CartWrapper = async ({ userId }: { userId: string }) => {
   );
 
   const { rows }: any = await productsInCart(userId);
-  const sum = sumUpCart(rows);
   const products: any = await getCartProducts(rows);
 
   return (
     <>
-      <Cart productsQuantityInCart={sum} products={products} />
+      <Cart products={products} />
     </>
   );
 };

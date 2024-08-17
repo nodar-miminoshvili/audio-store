@@ -21,7 +21,7 @@ export const getUserProfileData = async (): Promise<Claims> => {
   return user;
 };
 
-type Action = 'add or increment' | 'increment' | 'decrement' | 'delete product' | 'clear Cart';
+type Action = 'ADD OR INCREMENT' | 'INCREMENT' | 'DECREMENT' | 'REMOVE' | 'CLEAR';
 type productId = number;
 type UserId = string;
 
@@ -34,10 +34,41 @@ const addOrIncrement = async (userId: UserId, productId: productId) => {
     : await sql`UPDATE carts SET quantity = quantity + 1 WhERE user_id=${userId} AND product_id=${productId} ;`;
 };
 
+const increment = async (userId: UserId, productId: productId) => {
+  await sql`UPDATE carts SET quantity = quantity + 1 WhERE user_id=${userId} AND product_id=${productId} ;`;
+};
+const decrement = async (userId: UserId, productId: productId) => {
+  await sql`UPDATE carts SET quantity = quantity - 1 WhERE user_id=${userId} AND product_id=${productId} ;`;
+};
+const removeFromCart = async (userId: UserId, productId: productId) => {
+  await sql`DELETE FROM carts WhERE user_id=${userId} AND product_id=${productId} ;`;
+};
+const clearCart = async (userId: UserId) => {
+  await sql`DELETE FROM carts WhERE user_id=${userId};`;
+};
+
 export const updateCart = async (action: Action, productId?: productId) => {
   const { sub } = await getUserProfileData();
-  if (action === 'add or increment') {
-    await addOrIncrement(sub, productId!);
+
+  switch (action) {
+    case 'ADD OR INCREMENT':
+      await addOrIncrement(sub, productId!);
+      break;
+
+    case 'INCREMENT':
+      await increment(sub, productId!);
+      break;
+    case 'DECREMENT':
+      await decrement(sub, productId!);
+      break;
+    case 'REMOVE':
+      await removeFromCart(sub, productId!);
+      break;
+    case 'CLEAR':
+      await clearCart(sub);
+      break;
+    default:
+      throw new Error('Not valid');
   }
   revalidateTag('cart');
 };
