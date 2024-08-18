@@ -1,4 +1,5 @@
 import { PiTrashLight as TrashIcon } from 'react-icons/pi';
+import { RiShoppingCart2Line as EmptyCartIcon } from 'react-icons/ri';
 import CartItem from './CartItem';
 import { useOptimistic, useTransition } from 'react';
 import { updateCart } from '@/lib/actions';
@@ -47,42 +48,53 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
         sm:left-[calc(100%-28rem)] sm:translate-x-0 rounded-lg
         bg-[rgb(250,250,250)] shadow-lg "
       >
-        <div className="flex justify-between items-center ">
-          <span className="text-lg font-bold text-[var(--text-primary-clr)] tracking-wide">
-            CART ({sumOfQuantities})
-          </span>
-          <button
-            className="text-[var(--category-faded-text-clr)] font-semibold flex items-center gap-1.5
+        {optimisticProducts.length ? (
+          <>
+            <div className="flex justify-between items-center ">
+              <span className="text-lg font-bold text-[var(--text-primary-clr)] tracking-wide">
+                CART ({sumOfQuantities})
+              </span>
+              <button
+                className="text-[var(--category-faded-text-clr)] font-semibold flex items-center gap-1.5
             transition-colors hover:text-[var(--accent-clr)] text-[0.935rem] sm:text-base"
-            onClick={async () => {
-              startTransition(async () => {
-                dispatch({ type: 'CLEAR', payload: 0 });
-                await updateCart('CLEAR');
-              });
-            }}
-          >
-            Remove All <TrashIcon className="text-xl" />
-          </button>
-        </div>
-        <ul className="py-5">
-          {optimisticProducts.map(product => (
-            <CartItem
-              key={product.id}
-              id={product.id}
-              image={product.details.cartImage}
-              title={product.title}
-              price={product.price}
-              quantity={product.quantity}
-              dispatch={dispatch}
-            />
-          ))}
-        </ul>
-        <div className="flex justify-between items-center">
-          <span className="text-[var(--category-faded-text-clr)] font-semibold">TOTAL</span>
-          <span className="text-[var(--text-primary-clr)] font-bold text-lg">
-            $ {formatPrice(totalPrice)}
-          </span>
-        </div>
+                onClick={async () => {
+                  startTransition(async () => {
+                    dispatch({ type: 'CLEAR', payload: 0 });
+                    await updateCart('CLEAR');
+                  });
+                }}
+              >
+                Remove All <TrashIcon className="text-xl" />
+              </button>
+            </div>
+            <ul className="py-5">
+              {optimisticProducts.map(product => (
+                <CartItem
+                  key={product.id}
+                  id={product.id}
+                  image={product.details.cartImage}
+                  title={product.title}
+                  price={product.price}
+                  quantity={product.quantity}
+                  dispatch={dispatch}
+                />
+              ))}
+            </ul>
+            <div className="flex justify-between items-center">
+              <span className="text-[var(--category-faded-text-clr)] font-semibold">TOTAL</span>
+              <span className="text-[var(--text-primary-clr)] font-bold text-lg">
+                $ {formatPrice(totalPrice)}
+              </span>
+            </div>
+          </>
+        ) : (
+          <div className="w-full h-full grid place-items-center py-8">
+            <p className="text-lg  text-[var(--category-faded-text-clr)] font-bold">
+              Your cart is empty
+            </p>
+            <EmptyCartIcon className="text-8xl text-[var(--category-faded-text-clr)]" />
+          </div>
+        )}
       </div>
     </>
   );
