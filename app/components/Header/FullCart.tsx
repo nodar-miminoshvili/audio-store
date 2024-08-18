@@ -2,7 +2,11 @@ import { PiTrashLight as TrashIcon } from 'react-icons/pi';
 import CartItem from './CartItem';
 import { useOptimistic, useTransition } from 'react';
 import { updateCart } from '@/lib/actions';
-import { sumUpCartProductsQuantities } from '@/lib/helperFunctions';
+import {
+  formatPrice,
+  sumUpCartProductsPrices,
+  sumUpCartProductsQuantities,
+} from '@/lib/helperFunctions';
 
 const reducer = (state: PopulatedProduct[], action: { type: CartAction; payload: ProductId }) => {
   switch (action.type) {
@@ -34,6 +38,8 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
   const [optimisticProducts, dispatch] = useOptimistic(products, reducer);
   const [_, startTransition] = useTransition();
   const sumOfQuantities = sumUpCartProductsQuantities(optimisticProducts);
+  const totalPrice = sumUpCartProductsPrices(optimisticProducts);
+
   return (
     <>
       <div
@@ -71,6 +77,12 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
             />
           ))}
         </ul>
+        <div className="flex justify-between items-center">
+          <span className="text-[var(--category-faded-text-clr)] font-semibold">TOTAL</span>
+          <span className="text-[var(--text-primary-clr)] font-bold text-lg">
+            $ {formatPrice(totalPrice)}
+          </span>
+        </div>
       </div>
     </>
   );

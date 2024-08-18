@@ -3,6 +3,7 @@ import RenderCorrectSizeImage from '../RenderCorrectSizeImage';
 import AddToCartButton from './AddToCartButton';
 import Features from './Features';
 import ProductImages from './ProductImages';
+import { formatPrice } from '@/lib/helperFunctions';
 
 const Product = async ({ product }: { product: Product }) => {
   const images: ImageDetails[] = [
@@ -15,11 +16,6 @@ const Product = async ({ product }: { product: Product }) => {
     alt: product.title,
     sizes: '50vw',
   };
-
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
 
   const session = await getSession();
 
@@ -47,7 +43,7 @@ const Product = async ({ product }: { product: Product }) => {
           </p>
 
           <span className="text-lg font-bold text-[var(--text-temporary)]">
-            $ {formatter.format(Number(product.price)).slice(1)}
+            $ {formatPrice(product.price)}
           </span>
           <div className="flex gap-3.5 flex-wrap sm:gap-4 items-end md:gap-4 lg:gap-5">
             <button

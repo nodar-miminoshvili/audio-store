@@ -3,6 +3,7 @@ import { LuMinus as MinusIcon } from 'react-icons/lu';
 import { LuPlus as PlusIcon } from 'react-icons/lu';
 import { updateCart } from '@/lib/actions';
 import { useTransition } from 'react';
+import { formatPrice } from '@/lib/helperFunctions';
 
 const CartItem = ({
   id,
@@ -20,10 +21,7 @@ const CartItem = ({
   dispatch: (action: { type: CartAction; payload: number }) => void;
 }) => {
   const [_, startTransition] = useTransition();
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
+
   return (
     <li className="text-black flex justify-between items-center">
       <div className="flex items-center gap-2">
@@ -39,7 +37,7 @@ const CartItem = ({
         <div className="font-bold text-sm sm:text-[0.935rem]">
           <p className="text-[var(--text-primary-clr)] ">{title}</p>
           <p className="text-[var(--text-secondary-clr)] ">
-            $ {formatter.format(Number(price)).slice(1)}
+            $ {formatPrice(Number(price) * quantity)}
           </p>
         </div>
       </div>
