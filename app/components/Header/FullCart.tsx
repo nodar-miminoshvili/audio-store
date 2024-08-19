@@ -67,7 +67,7 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
                 Remove All <TrashIcon className="text-xl" />
               </button>
             </div>
-            <ul className="py-5">
+            <ul className="py-5 flex flex-col gap-3">
               {optimisticProducts.map(product => (
                 <CartItem
                   key={product.id}

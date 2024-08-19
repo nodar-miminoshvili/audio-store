@@ -5,7 +5,7 @@ import { getCartProducts } from '@/lib/actions';
 
 const CartWrapper = async ({ userId }: { userId: string }) => {
   const productsInCart = unstable_cache(
-    async (id: string) => await sql`SELECT * FROM carts WHERE user_id=${id}`,
+    async (id: string) => await sql`SELECT * FROM carts WHERE user_id=${id} ORDER BY id`,
     ['user-cart'],
     { tags: ['cart'] }
   );

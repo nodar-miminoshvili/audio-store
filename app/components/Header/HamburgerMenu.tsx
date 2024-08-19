@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { CgMenuLeftAlt as HamburgerIcon } from 'react-icons/cg';
 import { CgClose as CloseIcon } from 'react-icons/cg';
 import { BiUserCircle as UserIcon } from 'react-icons/bi';
@@ -17,7 +17,6 @@ const HamburgerMenu = ({
   isLogged: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const overlayRef = useRef<HTMLDivElement | null>(null);
 
   const handleOpen = () => {
     setIsOpen(p => !p);
@@ -33,25 +32,23 @@ const HamburgerMenu = ({
         }}
       >
         {isOpen ? (
-          <CloseIcon className="text-2xl" />
+          <CloseIcon className="text-2xl relative z-20" />
         ) : (
           <HamburgerIcon className="text-2xl sm:text-3xl" />
         )}
       </button>
+      {isOpen && (
+        <div
+          className="absolute top-0 left-0 w-full h-[100dvh] z-10 bg-[#00000050]"
+          onClick={() => handleOpen()}
+        ></div>
+      )}
 
       <div
         className={`absolute top-full left-0 w-56 bg-[#191919]
-      transition-transform h-[calc(100dvh-100%)] flex flex-col gap-4 px-6 
+      transition-transform h-[calc(100dvh-100%)] flex flex-col gap-4 px-6 z-20
       ${isOpen ? '-translate-x-0 ' : '-translate-x-full'}`}
       >
-        {isOpen && (
-          <div
-            className="absolute top-0 left-full w-[calc(100dvw-100%)] h-full bg-[#00000050]"
-            ref={overlayRef}
-            onClick={() => handleOpen()}
-          ></div>
-        )}
-
         <FullNav forSmallScreens />
 
         {isLogged ? (

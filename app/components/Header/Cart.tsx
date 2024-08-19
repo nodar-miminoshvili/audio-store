@@ -25,9 +25,15 @@ const Cart = ({ products }: { products: PopulatedProduct[] }) => {
         </span>
       </button>
       {isOpen && (
-        <div className="absolute w-full max-w-screen-xl h-full top-0 left-1/2 -translate-x-1/2 -z-50">
-          <FullCart products={products} />
-        </div>
+        <>
+          <div
+            className="absolute w-[100%] h-[100dvh] top-0 left-0 -z-50"
+            onClick={() => setIsOpen(p => !p)}
+          ></div>
+          <div className="absolute w-full max-w-screen-xl h-full top-0 left-1/2 -translate-x-1/2 -z-50">
+            <FullCart products={products} />
+          </div>
+        </>
       )}
     </>
   );
