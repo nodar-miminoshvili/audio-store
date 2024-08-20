@@ -55,36 +55,8 @@
     --bg-invesre: #191919;
     --text-inverse: #fff;
   }
-}
 
-html.dark {
-  --base-background: #191919;
-  --accent-clr: #d87d4a;
-  --accent-clr-highlight: #ec9d6e;
-  --text-primary-clr: #191919;
-  --text-secondary-clr: rgba(0, 0, 0, 0.5);
-  --category-faded-text-clr: #00000080;
-  --grey-box: #aaa;
-  --category-text: #000000a8;
-  --orange-box-text: #191919;
-  --orange-box-text-faded: #191919bf;
-  --text-temporary: #fff;
-  --text-temporary-faded: #ffffff80;
-  --footer-divider: #ffffff15;
-  --category-page-hero-divider: var(--accent-clr);
-
-  --theme-switcher-button-active-bg: #292929;
-  --theme-switcher-button: #a1a1a1;
-  --theme-switcher-button-active: #ededed;
-
-  --placeholder-clr: #363636;
-
-  --bg-invesre: #fff;
-  --text-inverse: #191919;
-}
-
-html.system {
-  @media (prefers-color-scheme: dark) {
+  html.dark {
     --base-background: #191919;
     --accent-clr: #d87d4a;
     --accent-clr-highlight: #ec9d6e;
@@ -108,6 +80,51 @@ html.system {
 
     --bg-invesre: #fff;
     --text-inverse: #191919;
+  }
+
+  html.system {
+    @media (prefers-color-scheme: dark) {
+      --base-background: #191919;
+      --accent-clr: #d87d4a;
+      --accent-clr-highlight: #ec9d6e;
+      --text-primary-clr: #191919;
+      --text-secondary-clr: rgba(0, 0, 0, 0.5);
+      --category-faded-text-clr: #00000080;
+      --grey-box: #aaa;
+      --category-text: #000000a8;
+      --orange-box-text: #191919;
+      --orange-box-text-faded: #191919bf;
+      --text-temporary: #fff;
+      --text-temporary-faded: #ffffff80;
+      --footer-divider: #ffffff15;
+      --category-page-hero-divider: var(--accent-clr);
+
+      --theme-switcher-button-active-bg: #292929;
+      --theme-switcher-button: #a1a1a1;
+      --theme-switcher-button-active: #ededed;
+
+      --placeholder-clr: #363636;
+
+      --bg-invesre: #fff;
+      --text-inverse: #191919;
+    }
+  }
+
+  .cartWrapper::-webkit-scrollbar {
+    width: 0.32em;
+  }
+  .cartWrapper::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .cartWrapper::-webkit-scrollbar-thumb {
+    @apply bg-[var(--accent-clr)] rounded-md;
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    .cartWrapper {
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-clr) transparent;
+    }
   }
 }
 

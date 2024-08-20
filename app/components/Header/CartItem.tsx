@@ -21,6 +21,8 @@ const CartItem = ({
   dispatch: (action: { type: CartAction; payload: number }) => void;
 }) => {
   const [_, startTransition] = useTransition();
+  const lastIdx = title.lastIndexOf(' ');
+  const shortTitle = title.substring(0, lastIdx);
 
   return (
     <li className="text-black flex justify-between items-center">
@@ -35,7 +37,7 @@ const CartItem = ({
           />
         </div>
         <div className="font-bold text-sm sm:text-[0.935rem]">
-          <p className="text-[var(--text-primary-clr)] ">{title}</p>
+          <p className="text-[var(--text-primary-clr)] ">{shortTitle}</p>
           <p className="text-[var(--text-secondary-clr)] ">
             $ {formatPrice(Number(price) * quantity)}
           </p>
@@ -53,7 +55,10 @@ const CartItem = ({
         >
           <MinusIcon />
         </button>
-        <span className="text-[var(--text-primary-clr)] p-1.5 sm:p-2 text-sm text-[0.935rem] sm:text-base">
+        <span
+          className="text-[var(--text-primary-clr)] p-1.5 sm:p-2 text-sm text-[0.935rem] sm:text-base
+                    min-w-[1.375rem] sm:min-w-[1.625rem] text-center"
+        >
           {quantity}
         </span>
         <button

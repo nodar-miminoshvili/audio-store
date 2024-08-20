@@ -44,9 +44,9 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
   return (
     <>
       <div
-        className="absolute top-[115%] w-[min(90dvw,24rem)] max-w-96 p-5 sm:p-8 h-80 left-1/2 -translate-x-1/2
+        className="absolute top-[115%] w-[min(90dvw,24rem)] max-w-96 p-5 sm:py-8 sm:px-6 h-96 left-1/2 -translate-x-1/2
         sm:left-[calc(100%-28rem)] sm:translate-x-0 rounded-lg
-        bg-[rgb(250,250,250)] shadow-lg "
+        bg-[rgb(250,250,250)] shadow-lg flex flex-col gap-3.5"
       >
         {optimisticProducts.length ? (
           <>
@@ -67,19 +67,21 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
                 Remove All <TrashIcon className="text-xl" />
               </button>
             </div>
-            <ul className="py-5 flex flex-col gap-3">
-              {optimisticProducts.map(product => (
-                <CartItem
-                  key={product.id}
-                  id={product.id}
-                  image={product.details.cartImage}
-                  title={product.title}
-                  price={product.price}
-                  quantity={product.quantity}
-                  dispatch={dispatch}
-                />
-              ))}
-            </ul>
+            <div className="h-4/6 overflow-y-scroll cartWrapper">
+              <ul className="pr-1.5 flex flex-col gap-3">
+                {optimisticProducts.map(product => (
+                  <CartItem
+                    key={product.id}
+                    id={product.id}
+                    image={product.details.cartImage}
+                    title={product.title}
+                    price={product.price}
+                    quantity={product.quantity}
+                    dispatch={dispatch}
+                  />
+                ))}
+              </ul>
+            </div>
             <div className="flex justify-between items-center">
               <span className="text-[var(--category-faded-text-clr)] font-semibold">TOTAL</span>
               <span className="text-[var(--text-primary-clr)] font-bold text-lg">
@@ -88,7 +90,7 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
             </div>
           </>
         ) : (
-          <div className="w-full h-full grid place-items-center py-8">
+          <div className="w-full h-full grid place-items-center py-14">
             <p className="text-lg  text-[var(--category-faded-text-clr)] font-bold">
               Your cart is empty
             </p>
