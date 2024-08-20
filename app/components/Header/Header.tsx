@@ -9,6 +9,7 @@ import ProfileButtonWrapper from './ProfileButtonWrapper';
 import { Suspense } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import CartWrapper from './CartWrapper';
+import Link from 'next/link';
 
 const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
   const session = await getSession();
@@ -18,8 +19,9 @@ const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
     <div className="bg-[var(--text-primary-clr)] sticky z-50 top-0">
       <header className="container flex py-8 text-white justify-between items-center border-b border-b-[#ffffff80]">
         <HamburgerMenu selectedTheme={selectedTheme} isLogged={!!session} />
-
-        <Image src={logo} alt="audiophile logo" width={144} height={25} className="" priority />
+        <Link href="/">
+          <Image src={logo} alt="audiophile logo" width={144} height={25} className="" priority />
+        </Link>
 
         <FullNav />
 

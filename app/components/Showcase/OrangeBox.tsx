@@ -41,7 +41,7 @@ const OrangeBox = () => {
           Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
         </p>
         <Link
-          href="#"
+          href="/speakers/4"
           className="btn btn-black block w-fit mx-auto hover:bg-transparent transition-colors hover:outline outline-1 lg:mx-0 lg:mr-auto"
         >
           SEE PRODUCT

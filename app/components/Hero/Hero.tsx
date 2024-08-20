@@ -16,7 +16,7 @@ const Hero = () => {
           <br /> exceptional build quality made for the <br /> passionate music enthusiast.
         </p>
         <Link
-          href="#"
+          href="/headphones/1"
           className="btn btn-primary block w-fit mx-auto tracking-wide lg:mx-0 lg:mr-auto transition-colors 
           border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] hover:bg-transparent"
         >

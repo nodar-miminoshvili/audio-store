@@ -33,7 +33,7 @@ const GrayBox = () => {
         <h1 className="text-[1.75rem] font-bold text-[var(--text-primary-clr)] mb-8">
           ZX7 SPEAKER
         </h1>
-        <Link href="#" className="btn btn-transparent ">
+        <Link href="/speakers/3" className="btn btn-transparent ">
           SEE PRODUCT
         </Link>
       </div>

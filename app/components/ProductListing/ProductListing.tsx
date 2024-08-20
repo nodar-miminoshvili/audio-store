@@ -12,7 +12,11 @@ const ProductListing = ({ product }: { product: Product }) => {
     sizes: '50vw',
   };
   return (
-    <li className="flex flex-col gap-8 lg:flex-row lg:gap-32 lg:even:flex-row-reverse ">
+    <li className="flex flex-col gap-8 lg:flex-row lg:gap-32 lg:even:flex-row-reverse relative ">
+      <Link
+        href={`${product.category}/${product.id}`}
+        className="absolute w-full h-full top-0 left-0"
+      ></Link>
       <RenderCorrectSizeImage
         imageDetailsArr={images}
         imagesCommonDetails={commonDetails}
@@ -35,7 +39,8 @@ const ProductListing = ({ product }: { product: Product }) => {
         <Link
           href={`${product.category}/${product.id}`}
           className="btn btn-primary border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] 
-          transition-colors hover:bg-transparent block w-fit text-sm mx-auto tracking-widest lg:mx-0 lg:mr-auto"
+          transition-colors hover:bg-transparent block w-fit text-sm mx-auto tracking-widest lg:mx-0 lg:mr-auto
+          relative z-10"
         >
           SEE PRODUCT
         </Link>
