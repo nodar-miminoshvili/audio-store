@@ -18,7 +18,11 @@ const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
   return (
     <div className="bg-[var(--text-primary-clr)] sticky z-50 top-0">
       <header className="container flex py-8 text-white justify-between items-center border-b border-b-[#ffffff80]">
-        <HamburgerMenu selectedTheme={selectedTheme} isLogged={!!session} />
+        <HamburgerMenu
+          selectedTheme={selectedTheme}
+          isLogged={!!session}
+          userAvatar={session?.user.picture}
+        />
         <Link href="/">
           <Image src={logo} alt="audiophile logo" width={144} height={25} className="" priority />
         </Link>
