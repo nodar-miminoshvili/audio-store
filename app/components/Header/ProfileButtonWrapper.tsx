@@ -7,7 +7,6 @@ const ProfileButtonWrapper = async () => {
   return (
     <div className="hidden items-center sm:flex">
       <ProfileButton avatar={user.picture} />
-      <a href="/api/auth/logout">Logout</a>
     </div>
   );
 };
