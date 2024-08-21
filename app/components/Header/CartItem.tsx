@@ -4,6 +4,7 @@ import { LuPlus as PlusIcon } from 'react-icons/lu';
 import { updateCart } from '@/lib/actions';
 import { useTransition } from 'react';
 import { formatPrice } from '@/lib/helperFunctions';
+import { useCartContext } from '@/app/contexts/CartContextProvider';
 
 const CartItem = ({
   id,
@@ -23,6 +24,7 @@ const CartItem = ({
   const [_, startTransition] = useTransition();
   const lastIdx = title.lastIndexOf(' ');
   const shortTitle = title.substring(0, lastIdx);
+  const { dispatchCartContext } = useCartContext();
 
   return (
     <li className="text-black flex justify-between items-center">
@@ -49,6 +51,7 @@ const CartItem = ({
           onClick={async () => {
             startTransition(async () => {
               dispatch({ type: 'DECREMENT', payload: id });
+              dispatchCartContext({ type: 'DECREMENT' });
               quantity === 1 ? await updateCart('REMOVE', id) : await updateCart('DECREMENT', id);
             });
           }}
@@ -66,6 +69,7 @@ const CartItem = ({
           onClick={async () => {
             startTransition(async () => {
               dispatch({ type: 'INCREMENT', payload: id });
+              dispatchCartContext({ type: 'INCREMENT' });
               await updateCart('INCREMENT', id);
             });
           }}

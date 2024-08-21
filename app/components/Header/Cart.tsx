@@ -2,11 +2,11 @@
 import { useState } from 'react';
 import { RiShoppingCartLine as CartIcon } from 'react-icons/ri';
 import FullCart from './FullCart';
-import { sumUpCartProductsQuantities } from '@/lib/helperFunctions';
+import { useCartContext } from '@/app/contexts/CartContextProvider';
 
 const Cart = ({ products }: { products: PopulatedProduct[] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const sumOfQuantities = sumUpCartProductsQuantities(products);
+  const { optimisticTotalQuantity } = useCartContext();
 
   return (
     <>
@@ -21,7 +21,7 @@ const Cart = ({ products }: { products: PopulatedProduct[] }) => {
           className="absolute top-0 right-0 translate-x-[40%] -translate-y-1/3 
         w-5 h-5 rounded-full bg-[var(--accent-clr)] grid place-content-center font-semibold "
         >
-          {sumOfQuantities}
+          {optimisticTotalQuantity}
         </span>
       </button>
       {isOpen && (

@@ -3,11 +3,8 @@ import { RiShoppingCart2Line as EmptyCartIcon } from 'react-icons/ri';
 import CartItem from './CartItem';
 import { useOptimistic, useTransition } from 'react';
 import { updateCart } from '@/lib/actions';
-import {
-  formatPrice,
-  sumUpCartProductsPrices,
-  sumUpCartProductsQuantities,
-} from '@/lib/helperFunctions';
+import { formatPrice, sumUpCartProductsPrices } from '@/lib/helperFunctions';
+import { useCartContext } from '@/app/contexts/CartContextProvider';
 
 const reducer = (state: PopulatedProduct[], action: { type: CartAction; payload: ProductId }) => {
   switch (action.type) {
@@ -38,7 +35,7 @@ const reducer = (state: PopulatedProduct[], action: { type: CartAction; payload:
 const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
   const [optimisticProducts, dispatch] = useOptimistic(products, reducer);
   const [_, startTransition] = useTransition();
-  const sumOfQuantities = sumUpCartProductsQuantities(optimisticProducts);
+  const { optimisticTotalQuantity, dispatchCartContext } = useCartContext();
   const totalPrice = sumUpCartProductsPrices(optimisticProducts);
 
   return (
@@ -52,7 +49,7 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
           <>
             <div className="flex justify-between items-center ">
               <span className="text-lg font-bold text-[var(--text-primary-clr)] tracking-wide">
-                CART ({sumOfQuantities})
+                CART ({optimisticTotalQuantity})
               </span>
               <button
                 className="text-[var(--category-faded-text-clr)] font-semibold flex items-center gap-1.5
@@ -60,6 +57,7 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
                 onClick={async () => {
                   startTransition(async () => {
                     dispatch({ type: 'CLEAR', payload: 0 });
+                    dispatchCartContext({ type: 'CLEAR' });
                     await updateCart('CLEAR');
                   });
                 }}

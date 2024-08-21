@@ -1,10 +1,12 @@
 'use client';
 
 import { updateCart } from '@/lib/actions';
-import { useRouter } from 'next/navigation';
+import { useCartContext } from '@/app/contexts/CartContextProvider';
+import { useTransition } from 'react';
 
 const AddToCartButton = ({ productId, isLogged }: { productId: number; isLogged: boolean }) => {
-  const router = useRouter();
+  const { dispatchCartContext } = useCartContext();
+  const [_, startTransition] = useTransition();
 
   return (
     <>
@@ -14,8 +16,10 @@ const AddToCartButton = ({ productId, isLogged }: { productId: number; isLogged:
           text-[var(--text-temporary)] hover:text-[var(--text-inverse)] 
           transition-colors hover:bg-[var(--bg-invesre)] block w-fit text-sm tracking-widest lg:!md-8"
           onClick={async () => {
-            await updateCart('ADD OR INCREMENT', productId);
-            router.refresh();
+            startTransition(async () => {
+              dispatchCartContext({ type: 'INCREMENT' });
+              await updateCart('ADD OR INCREMENT', productId);
+            });
           }}
         >
           ADD TO CART

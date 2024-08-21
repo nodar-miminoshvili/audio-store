@@ -2,19 +2,24 @@ import Image from 'next/image';
 import logo from '@/public/Header/logo.svg';
 import FullNav from './FullNav';
 import ThemeSwitcher from './ThemeSwitcher';
-import { getSession } from '@auth0/nextjs-auth0';
+import { Session } from '@auth0/nextjs-auth0';
 import LoginButton from './LoginButton';
 import SignupButton from './SignupButton';
 import ProfileButtonWrapper from './ProfileButtonWrapper';
 import { Suspense } from 'react';
 import HamburgerMenu from './HamburgerMenu';
-import CartWrapper from './CartWrapper';
 import Link from 'next/link';
+import Cart from './Cart';
 
-const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
-  const session = await getSession();
-  const userId = session && session.user.sub;
-
+const Header = async ({
+  selectedTheme,
+  session,
+  products,
+}: {
+  selectedTheme: Theme;
+  session: Session | null | undefined;
+  products: PopulatedProduct[];
+}) => {
   return (
     <div className="bg-[var(--text-primary-clr)] sticky z-50 top-0">
       <header className="container flex py-8 text-white justify-between items-center border-b border-b-[#ffffff80]">
@@ -40,7 +45,7 @@ const Header = async ({ selectedTheme }: { selectedTheme: Theme }) => {
             </div>
           ) : (
             <div className="flex gap-5 items-center">
-              <CartWrapper userId={userId} />
+              <Cart products={products} />
 
               <Suspense
                 fallback={

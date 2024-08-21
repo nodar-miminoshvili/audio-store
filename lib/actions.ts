@@ -2,8 +2,9 @@
 
 import { Claims, getSession } from '@auth0/nextjs-auth0';
 import { sql } from '@vercel/postgres';
-import { revalidateTag } from 'next/cache';
+import { revalidateTag, unstable_cache } from 'next/cache';
 import { cookies } from 'next/headers';
+import { sumUpCartProductsQuantities } from './helperFunctions';
 
 export const switchTheme = (theme: Theme) => {
   theme === 'system' ? cookies().delete('theme') : cookies().set('theme', theme);
@@ -73,7 +74,7 @@ export const updateCart = async (action: Action, productId?: productId) => {
   revalidateTag('cart');
 };
 
-export const getCartProducts = async (
+export const fetchCartProductsWithId = async (
   rawProducts: CartProductRaw[]
 ): Promise<PopulatedProduct[]> => {
   const populatedProducts = await Promise.all(
@@ -85,4 +86,17 @@ export const getCartProducts = async (
     })
   );
   return populatedProducts;
+};
+
+export const getCartProducts = async (userId: string) => {
+  const productsInCart = unstable_cache(
+    async (id: string) => await sql`SELECT * FROM carts WHERE user_id=${id} ORDER BY id`,
+    ['user-cart'],
+    { tags: ['cart'] }
+  );
+
+  const productsInCartRaw: any = await productsInCart(userId);
+  const products: any = await fetchCartProductsWithId(productsInCartRaw.rows);
+  const totalQuantity = sumUpCartProductsQuantities(products);
+  return { products, totalQuantity };
 };
