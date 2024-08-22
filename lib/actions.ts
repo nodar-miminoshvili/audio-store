@@ -100,3 +100,17 @@ export const getCartProducts = async (userId: string) => {
   const totalQuantity = sumUpCartProductsQuantities(products);
   return { products, totalQuantity };
 };
+
+export const fetchProductsByCategory = async (category: string) => {
+  const res = await sql`SELECT * FROM products WHERE category=${category} ORDER BY id`;
+  if (!res.rowCount) throw new Error('invalid category');
+  return res.rows as Product[];
+};
+
+export const fetchSingleProduct = async (id: string, category: string) => {
+  if (!Number(id)) throw new Error('invalid product id');
+
+  const res = await sql`SELECT * FROM products WHERE id=${Number(id)} AND category=${category}`;
+  if (!res.rowCount) throw new Error('not valid');
+  return res.rows[0] as Product;
+};

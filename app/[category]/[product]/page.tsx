@@ -1,16 +1,14 @@
 import GoBackButton from '@/app/components/ProductPage/GoBackButton';
 import Product from '@/app/components/ProductPage/Product';
-import { sql } from '@vercel/postgres';
+import { fetchSingleProduct } from '@/lib/actions';
 
-const CategoryPage = async ({ params }: { params: { product: string } }) => {
-  const { rows: products }: { rows: Product[] } =
-    await sql`SELECT * FROM products WHERE id=${Number(params.product)}`;
-
+const CategoryPage = async ({ params }: { params: { product: string; category: string } }) => {
+  const product = await fetchSingleProduct(params.product, params.category);
   return (
     <main className="container pt-12 sm:pt-16 mb-32">
       <div>
-        <GoBackButton category={products[0].category} />
-        <Product product={products[0]} />
+        <GoBackButton category={product.category} />
+        <Product product={product} />
       </div>
     </main>
   );

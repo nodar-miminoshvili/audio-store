@@ -1,9 +1,8 @@
-import { sql } from '@vercel/postgres';
 import ProductListing from '../components/ProductListing/ProductListing';
+import { fetchProductsByCategory } from '@/lib/actions';
 
 const CategoryPage = async ({ params }: { params: { category: string } }) => {
-  const { rows: products }: { rows: Product[] } =
-    await sql`SELECT * FROM products WHERE category=${params.category}`;
+  const products = await fetchProductsByCategory(params.category);
   return (
     <>
       <div
