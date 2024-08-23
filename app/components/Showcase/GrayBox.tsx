@@ -24,7 +24,7 @@ const GrayBox = () => {
   ];
 
   return (
-    <div className="w-full rounded-lg overflow-hidden relative my-12">
+    <div className="w-full rounded-lg overflow-hidden relative my-12 fade-in">
       <RenderCorrectSizeImage
         imageDetailsArr={imageDetails}
         imagesCommonDetails={{ alt: 'Speaker ZX7', sizes: '50vw' }}

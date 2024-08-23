@@ -29,8 +29,9 @@ const EarbudsBox = () => {
         imageDetailsArr={imageDetails}
         imagesCommonDetails={{ alt: 'Earphones YX1', sizes: '50vw' }}
         imageStyles="rounded-lg"
+        pictureStyles="slide-in from-left"
       />
-      <div className="w-full bg-[--grey-box] rounded-lg flex flex-col justify-center gap-8 pl-[10%] max-h-[18rem] sm:max-h-none md:pl-[15%] lg:pl-[20%]">
+      <div className="w-full bg-[--grey-box] rounded-lg flex flex-col justify-center gap-8 pl-[10%] max-h-[18rem] sm:max-h-none md:pl-[15%] lg:pl-[20%] slide-in from-right">
         <h2 className="text-[1.75rem] font-bold text-[var(--text-primary-clr)]">YX1 EARPHONES</h2>
         <Link href="/earphones/5" className="btn btn-transparent">
           SEE PRODUCT

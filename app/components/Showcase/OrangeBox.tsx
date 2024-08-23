@@ -25,7 +25,7 @@ const OrangeBox = () => {
   ];
 
   return (
-    <div className="showcase bg-[var(--accent-clr)] bg-orange-box-bg overflow-hidden orange-box text-center py-14 px-8 rounded-md lg:pb-0 lg:flex lg:justify-around lg:rounded-lg">
+    <div className="showcase bg-[var(--accent-clr)] bg-orange-box-bg overflow-hidden orange-box text-center py-14 px-8 rounded-md lg:pb-0 lg:flex lg:justify-around lg:rounded-lg fade-in">
       <RenderCorrectSizeImage
         imageDetailsArr={images}
         imagesCommonDetails={{ alt: 'Speaker ZX9', sizes: '50vw' }}

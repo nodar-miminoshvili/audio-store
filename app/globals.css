@@ -221,4 +221,48 @@
   .placeholder-box {
     @apply bg-[var(--placeholder-clr)] animate-pulse rounded-lg;
   }
+
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.63s ease-in;
+  }
+
+  .fade-in.appear {
+    opacity: 1;
+  }
+
+  .from-left,
+  .from-right {
+    transition: transform 0.75s ease-in, opacity 1s ease-in;
+    opacity: 0;
+  }
+
+  .from-right {
+    transform: translateX(50%);
+  }
+  .from-left {
+    transform: translateX(-50%);
+  }
+
+  .from-left.appear,
+  .from-right.appear {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .hero > div,
+  .hero::before {
+    opacity: 0;
+  }
+  .hero > div {
+    transition: opacity 0.75s ease-in 0.95s;
+  }
+  .hero::before {
+    transition: opacity 0.75s ease-in;
+  }
+
+  .hero.appear > div,
+  .hero.appear::before {
+    opacity: 1;
+  }
 }
