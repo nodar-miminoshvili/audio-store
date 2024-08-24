@@ -1,4 +1,5 @@
 import RenderCorrectSizeImage from '../RenderCorrectSizeImage';
+import AnimateHighlightedWord from './AnimateHighlightedWord';
 
 const AboutStore = () => {
   const images = [
@@ -23,7 +24,7 @@ const AboutStore = () => {
   ];
 
   return (
-    <section className="container pb-28 flex flex-col gap-10 lg:flex-row-reverse">
+    <section className="container pb-28 flex flex-col gap-10 lg:flex-row-reverse aboutSection">
       <RenderCorrectSizeImage
         imageDetailsArr={images}
         imagesCommonDetails={{
@@ -35,7 +36,14 @@ const AboutStore = () => {
       />
       <div className="text-center lg:text-left lg:basis-1/2 self-center lg:pr-20">
         <h2 className="text-[var(--text-temporary)] text-[1.75rem] mb-8 font-bold tracking-wider sm:text-4xl ">
-          BRINGING YOU THE <span className="text-[var(--accent-clr)] ">BEST</span> AUDIO GEAR
+          BRINGING YOU THE
+          <span
+            className="text-[var(--accent-clr)] min-w-24 pl-3 sm:min-w-32 
+                        sm:pl-[1.0625rem] inline-block text-left"
+          >
+            <AnimateHighlightedWord />
+          </span>
+          AUDIO GEAR
         </h2>
         <p className="text-[var(--text-temporary-faded)] leading-relaxed">
           Located at the heart of New York City, Audiophile is the premier store for high end
