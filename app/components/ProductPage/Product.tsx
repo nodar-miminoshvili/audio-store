@@ -4,6 +4,7 @@ import AddToCartButton from './AddToCartButton';
 import Features from './Features';
 import ProductImages from './ProductImages';
 import { formatPrice } from '@/lib/helperFunctions';
+import BuyNowButton from './BuyNowButton';
 
 const Product = async ({ product }: { product: Product }) => {
   const images: ImageDetails[] = [
@@ -46,12 +47,7 @@ const Product = async ({ product }: { product: Product }) => {
             $ {formatPrice(product.price)}
           </span>
           <div className="flex gap-3.5 flex-wrap sm:gap-4 items-end md:gap-4 lg:gap-5">
-            <button
-              className="py-3.5 px-5 btn-primary font-bold border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] 
-            transition-colors hover:bg-transparent block w-fit text-sm tracking-widest md:px-8"
-            >
-              BUY NOW
-            </button>
+            <BuyNowButton stripeInfo={product.details.stripeInfo} />
 
             <AddToCartButton productId={product.id} isLogged={!!session} />
           </div>

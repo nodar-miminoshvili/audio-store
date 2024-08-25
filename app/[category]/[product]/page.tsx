@@ -1,6 +1,7 @@
 import GoBackButton from '@/app/components/ProductPage/GoBackButton';
 import Product from '@/app/components/ProductPage/Product';
 import { fetchSingleProduct } from '@/lib/actions';
+export const revalidate = 3600;
 
 const CategoryPage = async ({ params }: { params: { product: string; category: string } }) => {
   const product = await fetchSingleProduct(params.product, params.category);

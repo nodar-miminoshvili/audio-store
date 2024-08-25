@@ -30,6 +30,10 @@ type Product = {
     categoryImages: string[];
     suggestionImages: string[];
     cartImage: string;
+    stripeInfo: {
+      productId: string;
+      priceId: string;
+    };
   };
 };
 
@@ -46,3 +50,12 @@ interface PopulatedProduct extends Product {
 
 type CartAction = 'INCREMENT' | 'DECREMENT' | 'CLEAR';
 type ProductId = number;
+
+type stripeProductInfoRaw = {
+  productId: string;
+  priceId: string;
+};
+
+interface stripeProductInfoPopulated extends stripeProductInfoRaw {
+  quantity: number;
+}
