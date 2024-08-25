@@ -1,18 +1,21 @@
-'use client';
-import { loadStripe } from '@stripe/stripe-js';
-import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
 import { CgSpinnerAlt as Spinner } from 'react-icons/cg';
+import { usePathname } from 'next/navigation';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
-const BuyNowButton = ({ stripeInfo }: { stripeInfo: stripeProductInfoRaw }) => {
+const CheckoutButton = ({ products }: { products: PopulatedProduct[] }) => {
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
 
   const handleClick = async () => {
     setIsLoading(true);
     const stripe = await stripePromise;
+    const productsToCheckout = products.map(product => ({
+      ...product.details.stripeInfo,
+      quantity: product.quantity,
+    }));
 
     try {
       const response = await fetch(`/api/checkout_session?visitedFrom=${pathname}`, {
@@ -20,7 +23,7 @@ const BuyNowButton = ({ stripeInfo }: { stripeInfo: stripeProductInfoRaw }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify([{ ...stripeInfo, quantity: 1 }]),
+        body: JSON.stringify(productsToCheckout),
       });
 
       const session = await response.json();
@@ -49,14 +52,13 @@ const BuyNowButton = ({ stripeInfo }: { stripeInfo: stripeProductInfoRaw }) => {
 
   return (
     <button
-      onClick={handleClick}
+      className={`py-3 mt-1.5  tracking-wider font-bold bg-[var(--accent-clr)] transition-colors
+     hover:bg-transparent border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] relative group
+     ${isLoading && '!text-transparent'}`}
       disabled={isLoading}
-      className={`py-3.5 px-5 btn-primary font-bold border border-[var(--accent-clr)] hover:text-[var(--accent-clr)] 
-transition-colors hover:bg-transparent block w-fit text-sm tracking-widest md:px-8 relative group ${
-        isLoading && '!text-transparent'
-      }`}
+      onClick={handleClick}
     >
-      BUY NOW
+      CHECKOUT
       {isLoading && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:text-[var(--accent-clr)] text-white">
           <Spinner className="text-4xl animate-spin" />
@@ -66,4 +68,4 @@ transition-colors hover:bg-transparent block w-fit text-sm tracking-widest md:px
   );
 };
 
-export default BuyNowButton;
+export default CheckoutButton;

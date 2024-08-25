@@ -1,13 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-06-20',
 });
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const productsToCheckout: stripeProductInfoPopulated[] = await request.json();
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    const searchParams = request.nextUrl.searchParams;
+    const visitedFrom = searchParams.get('visitedFrom');
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
@@ -20,8 +24,8 @@ export async function POST(request: Request) {
           quantity: product.quantity,
         };
       }),
-      success_url: `http://localhost:3000/?success=true`,
-      cancel_url: `http://localhost:3000/?success=false`,
+      success_url: `${baseURL}/?success=true`,
+      cancel_url: `${baseURL}${visitedFrom}`,
     });
 
     return NextResponse.json({ id: session.id });

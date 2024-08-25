@@ -5,6 +5,7 @@ import { useOptimistic, useTransition } from 'react';
 import { updateCart } from '@/lib/actions';
 import { formatPrice, sumUpCartProductsPrices } from '@/lib/helperFunctions';
 import { useCartContext } from '@/app/contexts/CartContextProvider';
+import CheckoutButton from './CheckoutButton';
 
 const reducer = (state: PopulatedProduct[], action: { type: CartAction; payload: ProductId }) => {
   switch (action.type) {
@@ -41,7 +42,7 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
   return (
     <>
       <div
-        className="absolute top-[115%] w-[min(90dvw,24rem)] max-w-96 p-5 sm:py-8 sm:px-6 h-96 left-1/2 -translate-x-1/2
+        className="absolute top-[115%] w-[min(90dvw,24rem)] max-w-96 p-5 sm:pt-8 sm:pb-6 sm:px-6 h-96 left-1/2 -translate-x-1/2
         sm:left-[calc(100%-28rem)] sm:translate-x-0 rounded-lg
         bg-[rgb(250,250,250)] shadow-lg flex flex-col gap-3.5"
       >
@@ -86,6 +87,7 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
                 $ {formatPrice(totalPrice)}
               </span>
             </div>
+            <CheckoutButton products={optimisticProducts} />
           </>
         ) : (
           <div className="w-full h-full grid place-items-center py-14">
