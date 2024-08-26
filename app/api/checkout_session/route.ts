@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
           quantity: product.quantity,
         };
       }),
-      success_url: `${baseURL}/?success=true`,
+      success_url: `${baseURL}/orders?success=true`,
       cancel_url: `${baseURL}${visitedFrom}`,
     });
 
