@@ -17,7 +17,7 @@ const UserOptionsDropdown = ({ closeDropdown }: { closeDropdown: () => void }) =
           <ul className="p-3.5 text-[var(--text-primary-clr)] font-bold flex flex-col items-center gap-3">
             <li>
               <Link
-                href={'/'}
+                href={'/orders'}
                 className="flex gap-2 items-center transition-colors hover:text-[var(--accent-clr)]"
               >
                 Orders <ListIcon className="text-lg fill-[var(--accent-clr)]" />
