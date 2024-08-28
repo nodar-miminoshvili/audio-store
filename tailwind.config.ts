@@ -14,6 +14,9 @@ const config: Config = {
         'hero-desktop': "url('../public/Hero/heroDesktop.jpg')",
         'orange-box-bg': "url('../public/Showcase/showcaseBgPattern.svg')",
       },
+      screens: {
+        xs: '320px',
+      },
     },
   },
   plugins: [],

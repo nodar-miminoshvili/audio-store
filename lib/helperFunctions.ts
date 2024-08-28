@@ -17,9 +17,23 @@ export const formatPrice = (price: string | number) => {
 };
 
 export const formatDate = (timestamp: number) => {
+  const shortMonthNames = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
   const date = new Date(timestamp * 1000);
   const day = date.getDate();
-  const month = date.getMonth() + 1;
+  const month = shortMonthNames[date.getMonth()];
   const year = date.getFullYear();
   const formattedDate = `${day}-${month}-${year}`;
   return formattedDate;

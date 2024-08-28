@@ -1,5 +1,5 @@
 import SuccessMessage from '../components/Orders/SuccessMessage';
-import Orders from '../components/Orders/Orders';
+import OrdersWrapper from '../components/Orders/OrdersWrapper';
 import { getSession } from '@auth0/nextjs-auth0';
 import { permanentRedirect } from 'next/navigation';
 import { retrieveOrderInfoFromStripeAndInsertInDb } from '@/lib/actions';
@@ -22,7 +22,7 @@ const OrderPage = async ({
       {searchParams.success ? (
         <SuccessMessage isLogged={!!session} />
       ) : (
-        <Orders userId={session!.user.sub} />
+        <OrdersWrapper userId={session!.user.sub} />
       )}
     </>
   );
