@@ -18,13 +18,16 @@ const CheckoutButton = ({ products }: { products: PopulatedProduct[] }) => {
     }));
 
     try {
-      const response = await fetch(`/api/checkout_session?visitedFrom=${pathname}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productsToCheckout),
-      });
+      const response = await fetch(
+        `/api/checkout_session?visitedFrom=${pathname}&clear-cart=true`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(productsToCheckout),
+        }
+      );
 
       const session = await response.json();
 

@@ -12,7 +12,6 @@ const Order = ({
   expandOrder: () => void;
   isExpanded: boolean;
 }) => {
-  console.log(order);
   return (
     <li
       className="border py-6 px-3.5 sm:px-5 rounded-md accordion-panel cursor-pointer transition-colors

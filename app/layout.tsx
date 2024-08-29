@@ -8,6 +8,7 @@ import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { getSession } from '@auth0/nextjs-auth0';
 import { getCartProducts } from '@/lib/actions';
 import CartContextProvider from './contexts/CartContextProvider';
+import RootLayoutError from './components/RootLayoutError';
 
 const manrope = Manrope({
   weight: ['400', '500', '600', '700'],
@@ -32,18 +33,22 @@ export default async function RootLayout({
 
   const session = await getSession();
   const userId = session && session.user.sub;
-  const { products, totalQuantity } = (userId && (await getCartProducts(userId))) || {};
+  const { products, totalQuantity, error } = (userId && (await getCartProducts(userId))) || {};
 
   return (
     <html lang="en" className={`${theme}`}>
       <body className={manrope.className}>
-        <UserProvider>
-          <CartContextProvider totalQuantity={totalQuantity || 0}>
-            <Header selectedTheme={theme} session={session} products={products} />
-            {children}
-            <Footer />
-          </CartContextProvider>
-        </UserProvider>
+        {!error ? (
+          <UserProvider>
+            <CartContextProvider totalQuantity={totalQuantity || 0}>
+              <Header selectedTheme={theme} session={session} products={products} />
+              {children}
+              <Footer />
+            </CartContextProvider>
+          </UserProvider>
+        ) : (
+          <RootLayoutError />
+        )}
       </body>
     </html>
   );

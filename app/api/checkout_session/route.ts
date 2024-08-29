@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
 
     const searchParams = request.nextUrl.searchParams;
     const visitedFrom = searchParams.get('visitedFrom');
+    const clearCart = searchParams.get('clear-cart');
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
@@ -24,7 +25,9 @@ export async function POST(request: NextRequest) {
           quantity: product.quantity,
         };
       }),
-      success_url: `${baseURL}/orders?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${baseURL}/orders?success=true&session_id={CHECKOUT_SESSION_ID}${
+        clearCart ? '&clear-cart=true' : ''
+      }`,
       cancel_url: `${baseURL}${visitedFrom}`,
     });
 

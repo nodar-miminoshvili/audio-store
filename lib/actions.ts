@@ -95,11 +95,15 @@ export const getCartProducts = async (userId: string) => {
     ['user-cart'],
     { tags: ['cart'] }
   );
-
-  const productsInCartRaw: any = await productsInCart(userId);
-  const products: any = await fetchCartProductsWithId(productsInCartRaw.rows);
-  const totalQuantity = sumUpCartProductsQuantities(products);
-  return { products, totalQuantity };
+  try {
+    const productsInCartRaw: any = await productsInCart(userId);
+    const products: any = await fetchCartProductsWithId(productsInCartRaw.rows);
+    const totalQuantity = sumUpCartProductsQuantities(products);
+    return { products, totalQuantity };
+  } catch (err) {
+    console.error(err);
+    return { error: true };
+  }
 };
 
 export const fetchProductsByCategory = async (category: string) => {
@@ -118,7 +122,8 @@ export const fetchSingleProduct = async (id: string, category: string) => {
 
 export const retrieveOrderInfoFromStripeAndInsertInDb = async (
   sessionId: string,
-  userId: string
+  userId: string,
+  needClearCart: boolean
 ) => {
   const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
   const stripeSession = await stripe.checkout.sessions.retrieve(sessionId);
@@ -144,7 +149,7 @@ export const retrieveOrderInfoFromStripeAndInsertInDb = async (
   };
 
   await sql`INSERT INTO orders (user_id,details) VALUES (${userId},${JSON.stringify(data)});`;
-  await clearCart(userId);
+  needClearCart && (await clearCart(userId));
   revalidateTag('cart');
   revalidateTag('orders');
   permanentRedirect('/orders?success=true');
@@ -158,4 +163,11 @@ export const getUserOrders = async (userId: string) => {
   );
   const orders: any = await userOrders(userId);
   return orders.rows;
+};
+
+export const validateStripeSession = async (sessionId: string) => {
+  // try/catch - block not required, Next's 'error' file will catch errors thrown by fetch call
+  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+  await stripe.checkout.sessions.retrieve(sessionId);
+  return;
 };

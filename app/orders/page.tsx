@@ -2,7 +2,7 @@ import SuccessMessage from '../components/Orders/SuccessMessage';
 import OrdersWrapper from '../components/Orders/OrdersWrapper';
 import { getSession } from '@auth0/nextjs-auth0';
 import { permanentRedirect } from 'next/navigation';
-import { retrieveOrderInfoFromStripeAndInsertInDb } from '@/lib/actions';
+import { retrieveOrderInfoFromStripeAndInsertInDb, validateStripeSession } from '@/lib/actions';
 
 const OrderPage = async ({
   searchParams,
@@ -15,8 +15,13 @@ const OrderPage = async ({
   if (!session && !successfulPurchase) permanentRedirect('/');
 
   if (session && successfulPurchase) {
-    await retrieveOrderInfoFromStripeAndInsertInDb(searchParams.session_id!, session.user.sub);
+    await retrieveOrderInfoFromStripeAndInsertInDb(
+      searchParams.session_id!,
+      session.user.sub,
+      !!searchParams['clear-cart']
+    );
   }
+  if (!session) await validateStripeSession(searchParams.session_id!);
   return (
     <>
       {searchParams.success ? (
