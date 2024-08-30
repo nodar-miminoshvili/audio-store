@@ -1,7 +1,16 @@
 import GoBackButton from '@/app/components/ProductPage/GoBackButton';
 import Product from '@/app/components/ProductPage/Product';
 import { fetchSingleProduct } from '@/lib/actions';
-export const revalidate = 3600;
+import { ProductPageMetadataGenerator } from '@/lib/metadata/metadataGenerators';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { product: string; category: string };
+}): Promise<Metadata> {
+  return ProductPageMetadataGenerator(params);
+}
 
 const CategoryPage = async ({ params }: { params: { product: string; category: string } }) => {
   const product = await fetchSingleProduct(params.product, params.category);

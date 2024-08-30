@@ -77,7 +77,7 @@ const HamburgerMenu = ({
             <div className="flex justify-between text-[0.94rem] font-semibold items-center mt-3.5 text-nowrap">
               <div className="min-w-[5rem] text-right pr-3 ">
                 <Link
-                  href={'/'}
+                  href={'/orders'}
                   className="flex gap-1.5 items-center transition-colors hover:text-[var(--accent-clr)]"
                 >
                   Orders <ListIcon className="text-lg fill-[var(--accent-clr)]" />

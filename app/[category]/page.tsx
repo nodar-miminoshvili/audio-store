@@ -1,5 +1,15 @@
 import ProductListing from '../components/ProductListing/ProductListing';
 import { fetchProductsByCategory } from '@/lib/actions';
+import { CategoryPageMetadataGenerator } from '@/lib/metadata/metadataGenerators';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { category: string };
+}): Promise<Metadata> {
+  return CategoryPageMetadataGenerator(params);
+}
 
 const CategoryPage = async ({ params }: { params: { category: string } }) => {
   const products = await fetchProductsByCategory(params.category);
