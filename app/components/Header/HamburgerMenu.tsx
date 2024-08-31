@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { CgMenuLeftAlt as HamburgerIcon } from 'react-icons/cg';
 import { CgClose as CloseIcon } from 'react-icons/cg';
 import { BiUserCircle as UserIcon } from 'react-icons/bi';
@@ -24,10 +24,23 @@ const HamburgerMenu = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpen = useCallback(() => {
     setIsOpen(p => !p);
     document.documentElement.style.overflow = !isOpen ? 'hidden' : 'scroll';
-  };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    const handleMediaQueryChange = (query: MediaQueryListEvent) => {
+      if (!isOpen || !query.matches) return;
+      handleOpen();
+    };
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+    };
+  }, [isOpen, handleOpen]);
 
   return (
     <>

@@ -19,6 +19,7 @@ const UserOptionsDropdown = ({ closeDropdown }: { closeDropdown: () => void }) =
               <Link
                 href={'/orders'}
                 className="flex gap-2 items-center transition-colors hover:text-[var(--accent-clr)]"
+                onClick={closeDropdown}
               >
                 Orders <ListIcon className="text-lg fill-[var(--accent-clr)]" />
               </Link>

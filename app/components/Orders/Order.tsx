@@ -48,7 +48,7 @@ const Order = ({
               DELIVERED
             </span>
           )}
-          <span className="ml-4 text-base sm:text-lg font-bold text-[var(--text-temporary)]">
+          <span className="ml-4 text-base sm:text-lg font-bold text-[var(--text-temporary)] min-w-0 xs:min-w-[6.25rem] text-center">
             $<span className="ml-0.5 sm:ml-1">{formatPrice(order.details.total / 100)}</span>
           </span>
           <span className="ml-2 sm:ml-4 text-xl text-[var(--text-temporary)]">
