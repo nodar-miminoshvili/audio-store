@@ -25,7 +25,11 @@ const OrangeBox = () => {
   ];
 
   return (
-    <div className="showcase bg-[var(--accent-clr)] bg-orange-box-bg overflow-hidden orange-box text-center py-14 px-8 rounded-md lg:pb-0 lg:flex lg:justify-around lg:rounded-lg fade-in">
+    <div
+      className="showcase bg-[var(--accent-clr)] bg-orange-box-bg overflow-hidden  
+    text-center py-14 px-8 rounded-md lg:pb-0 lg:flex lg:justify-around lg:rounded-lg fade-in
+    bg-no-repeat bg-cover bg-[50%_-120px]"
+    >
       <RenderCorrectSizeImage
         imageDetailsArr={images}
         imagesCommonDetails={{ alt: 'Speaker ZX9', sizes: '50vw' }}
@@ -42,7 +46,7 @@ const OrangeBox = () => {
         </p>
         <Link
           href="/speakers/4"
-          className="btn btn-black block w-fit mx-auto hover:bg-transparent transition-colors hover:outline outline-1 lg:mx-0 lg:mr-auto"
+          className="btn text-white bg-[var(--text-primary-clr)] block w-fit mx-auto hover:bg-transparent transition-colors hover:outline outline-1 lg:mx-0 lg:mr-auto"
         >
           SEE PRODUCT
         </Link>

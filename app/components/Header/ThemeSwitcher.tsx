@@ -8,8 +8,9 @@ import { RiComputerLine as SystemIcon } from 'react-icons/ri';
 const ThemeSwitcher = ({ selectedTheme }: { selectedTheme: Theme }) => {
   return (
     <ul
-      className="themeSwitcher flex justify-between items-center w-[5.8rem] px-1.5 py-1.5 
-    rounded-[100vw] border-[0.5px] text-[1.125rem] text-gray-500"
+      className="flex themeSwitcher justify-between items-center w-[5.8rem] px-1.5 py-1.5 
+    rounded-[100vw] border-[0.5px] text-[1.125rem] text-gray-500 
+    border-[var(--theme-switcher-border)] text-[var(--theme-switcher-button)]"
     >
       <li
         className={`${
