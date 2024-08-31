@@ -74,6 +74,7 @@ const FullCart = ({ products }: { products: PopulatedProduct[] }) => {
                     id={product.id}
                     image={product.details.cartImage}
                     title={product.title}
+                    category={product.category}
                     price={product.price}
                     quantity={product.quantity}
                     dispatch={dispatch}

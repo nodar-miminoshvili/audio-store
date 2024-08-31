@@ -5,11 +5,13 @@ import { updateCart } from '@/lib/actions';
 import { useTransition } from 'react';
 import { formatPrice } from '@/lib/helperFunctions';
 import { useCartContext } from '@/app/contexts/CartContextProvider';
+import Link from 'next/link';
 
 const CartItem = ({
   id,
   image,
   title,
+  category,
   price,
   quantity,
   dispatch,
@@ -17,6 +19,7 @@ const CartItem = ({
   id: number;
   image: string;
   title: string;
+  category: string;
   price: string;
   quantity: number;
   dispatch: (action: { type: CartAction; payload: number }) => void;
@@ -29,7 +32,7 @@ const CartItem = ({
   return (
     <li className="text-black flex justify-between items-center">
       <div className="flex items-center gap-2">
-        <div>
+        <Link className="block" href={`/${category}/${id}`}>
           <Image
             src={image}
             width={80}
@@ -37,9 +40,14 @@ const CartItem = ({
             alt={title}
             className="aspect-square w-16 sm:w-20 rounded-md"
           />
-        </div>
+        </Link>
         <div className="font-bold text-sm sm:text-[0.935rem]">
-          <p className="text-[var(--text-primary-clr)] ">{shortTitle}</p>
+          <Link
+            href={`/${category}/${id}`}
+            className="text-[var(--text-primary-clr)] block transition-colors hover:text-[var(--accent-clr)]"
+          >
+            {shortTitle}
+          </Link>
           <p className="text-[var(--text-secondary-clr)] ">
             $ {formatPrice(Number(price) * quantity)}
           </p>
