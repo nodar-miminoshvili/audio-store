@@ -73,6 +73,29 @@
       --text-inverse: #191919;
     }
   }
+
+  body::-webkit-scrollbar {
+    @apply w-[0.56em] xl:w-[0.75em] 2xl:w-[1.2em];
+  }
+
+  body::-webkit-scrollbar-track {
+    @apply bg-[var(--text-primary-clr)];
+  }
+  body::-webkit-scrollbar-thumb {
+    @apply bg-[var(--accent-clr)] rounded-lg border-[var(--text-primary-clr)] border-solid  
+    border-[0.15em] 2xl:border-[0.25em];
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    @apply transition-colors bg-[var(--accent-clr-highlight)];
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-clr) var(--text-primary-clr);
+    }
+  }
 }
 
 @layer utilities {
